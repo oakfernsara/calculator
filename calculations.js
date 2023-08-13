@@ -1,17 +1,17 @@
 //Basic math operator functions
-const add = function(num1, num2) {
+function add(num1, num2) {
     return num1+num2
 }
 
-const subtract = function(num1, num2) {
+function subtract(num1, num2) {
     return num1-num2
 }
 
-const multiply = function(num1, num2) {
+function multiply(num1, num2) {
     return num1*num2
 }
 
-const divide = function(num1, num2) {
+function divide(num1, num2) {
     return num1/num2
 }
 
@@ -19,7 +19,7 @@ const divide = function(num1, num2) {
 let first, second, operator;
 
 //Function for operator
-const operatorFunc = function(num1, op, num2) {
+function operatorFunc(num1, op, num2) {
     switch(op) {
         case '+':
             return add(num1, num2);
@@ -37,3 +37,45 @@ const operatorFunc = function(num1, op, num2) {
             return "No operator detected";
     }
 }
+
+//create HTML calculator
+const calculator = document.createElement('div');
+const screen = document.createElement('input');
+const buttons = document.createElement('div');
+const numbers = document.createElement('div');
+const opDiv = document.createElement('div');
+
+document.body.appendChild(calculator);
+calculator.appendChild(screen);
+calculator.appendChild(buttons);
+buttons.appendChild(numbers);
+buttons.appendChild(opDiv);
+
+//add numbers buttons
+for (let x = 1; x < 10; x++) {
+    let button = document.createElement('button');
+    let thisButton = numbers.appendChild(button);
+    thisButton.textContent = x;
+    thisButton.id = x;
+}
+
+//add operator buttons
+const opArray = ['+', '-', '*', '/'];
+
+opArray.forEach(op => {
+    let button = document.createElement('button');
+    let thisButton = opDiv.appendChild(button);
+    thisButton.textContent = op;
+    thisButton.id = op;
+})
+
+//add equals button
+const equals = document.createElement('button');
+equals.textContent = '=';
+equals.id = '=';
+buttons.appendChild(equals)
+
+//add clear button
+const clear = document.createElement('button');
+clear.textContent = 'clear';
+buttons.appendChild(clear);
