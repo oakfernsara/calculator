@@ -19,7 +19,7 @@ function divide(num1, num2) {
 let first, second, operator;
 
 //Function for operator
-function operatorFunc(num1, op, num2) {
+function operate(num1, op, num2) {
     switch(op) {
         case '+':
             return add(num1, num2);
@@ -34,7 +34,7 @@ function operatorFunc(num1, op, num2) {
             return divide(num1, num2);
             break;
         default:
-            return "No operator detected";
+            return "ERR";
     }
 }
 
@@ -90,6 +90,14 @@ const equals = document.createElement('button');
 equals.textContent = '=';
 equals.id = '=';
 buttons.appendChild(equals)
+equals.addEventListener('click', e => {
+    let value = screen.value.split(/\D/);
+    let op = screen.value.match(/\D/)[0];
+    let num1 = parseInt(value[0]);
+    let num2 = parseInt(value[1]);
+    console.log('value', value, 'op', op, 'num1', num1, 'num2', num2);
+    screen.value = operate(num1, op, num2);
+})
 
 //add clear button
 const clear = document.createElement('button');
