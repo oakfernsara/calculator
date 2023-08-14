@@ -62,9 +62,9 @@ function operate(num1, op, num2) {
 //update input function
 function inputUpdate(press) {
     let existing = screen.value;
-    if (press.match(/\D/)) {
+    if (press.match(/[+\-\*\/]/)) {
         press = ` ${press} `
-        let eqCheck = existing.match(/\d+\s\D\s\d+/)
+        let eqCheck = existing.match(/\d+\s[+\-\*\/]\s\d+/)
         if (eqCheck) {
             console.log('we have some numbers to compute', eqCheck);
             existing = equalFunc(existing)
@@ -100,6 +100,21 @@ for (let x = 1; x < 10; x++) {
         inputUpdate(e.target.textContent)
     })
 }
+
+//add decimal button
+let decButton = document.createElement('button');
+numbers.appendChild(decButton);
+decButton.textContent = '.';
+decButton.addEventListener('click', e => {
+    //check last number for a decimal
+    let nums = getNums(screen.value);
+    console.log('nums is', nums)
+    let last = nums.length-1;
+    let decMatch = nums[last].toString().match(/\./);
+    if (!decMatch) {
+        inputUpdate('.')
+    }
+})
 
 //add operator buttons
 const opArray = ['+', '-', '*', '/'];
