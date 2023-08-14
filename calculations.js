@@ -41,7 +41,7 @@ function operate(num1, op, num2) {
 //update input
 function inputUpdate(press) {
     let existing = screen.value;
-    existing += press;
+    existing === '0' ? existing = press : existing += press;
     screen.value = existing;
 }
 
@@ -103,3 +103,6 @@ equals.addEventListener('click', e => {
 const clear = document.createElement('button');
 clear.textContent = 'clear';
 buttons.appendChild(clear);
+clear.addEventListener('click', e => {
+    screen.value = 0;
+})
