@@ -38,6 +38,13 @@ function operatorFunc(num1, op, num2) {
     }
 }
 
+//update input
+function inputUpdate(press) {
+    let existing = screen.value;
+    existing += press;
+    screen.value = existing;
+}
+
 //create HTML calculator
 const calculator = document.createElement('div');
 const screen = document.createElement('input');
@@ -57,6 +64,12 @@ for (let x = 1; x < 10; x++) {
     let thisButton = numbers.appendChild(button);
     thisButton.textContent = x;
     thisButton.id = x;
+
+    //set display populate function
+    thisButton.addEventListener('click', e=> {
+        console.log('numButton clicked!', e.target)
+        inputUpdate(e.target.textContent)
+    })
 }
 
 //add operator buttons
@@ -67,6 +80,9 @@ opArray.forEach(op => {
     let thisButton = opDiv.appendChild(button);
     thisButton.textContent = op;
     thisButton.id = op;
+    thisButton.addEventListener('click', e=> {
+        inputUpdate(e.target.textContent);
+    })
 })
 
 //add equals button
