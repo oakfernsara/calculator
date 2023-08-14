@@ -28,24 +28,13 @@ function getOp(string) {
 }
 
 function equalFunc(value) {
-    //separate values from nums array
-    // let value = screen.value.split(" ");
     console.log('value is', value)
     let num1 = getNums(value)[0];
     let num2 = getNums(value)[1];
     let op = getOp(value);
     console.log('value', value, 'op', op, 'num1', num1, 'num2', num2);
-    return operate(num1, op, num2).toFixed(2);
+    return num1 && num2 && op ? operate(num1, op, num2).toFixed(2) : 'ERR';
 }
-
-// function separator(string) {
-//     let equation = string;
-//     //find multiplication
-//     let my = string.match(/\d+\s\*\s\d+/);
-//     //find division
-//     let dear = string.match(/\d+\s\/\s\d/);
-//     console.log(my)
-// }
 
 //Add variables for num1, num2, and operator
 let first, second, operator;
