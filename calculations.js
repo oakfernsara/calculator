@@ -15,6 +15,35 @@ function divide(num1, num2) {
     return num1/num2
 }
 
+function getNums(string) {
+    let nums = string.match(/\s*\d+\s*/g).map(num => parseInt(num.replace(' ', '')));
+    return nums
+}
+
+function getOp(string) {
+    return string.match(/[^\d|\s]/)[0];
+}
+
+function equalFunc(value) {
+    //separate values from nums array
+    // let value = screen.value.split(" ");
+    console.log('value is', value)
+    let num1 = getNums(value)[0];
+    let num2 = getNums(value)[1];
+    let op = getOp(value);
+    console.log('value', value, 'op', op, 'num1', num1, 'num2', num2);
+    return operate(num1, op, num2);
+}
+
+// function separator(string) {
+//     let equation = string;
+//     //find multiplication
+//     let my = string.match(/\d+\s\*\s\d+/);
+//     //find division
+//     let dear = string.match(/\d+\s\/\s\d/);
+//     console.log(my)
+// }
+
 //Add variables for num1, num2, and operator
 let first, second, operator;
 
@@ -38,9 +67,17 @@ function operate(num1, op, num2) {
     }
 }
 
-//update input
+//update input function
 function inputUpdate(press) {
     let existing = screen.value;
+    if (press.match(/\D/)) {
+        press = ` ${press} `
+        let eqCheck = existing.match(/\d+\s\D\s\d+/)
+        if (eqCheck) {
+            console.log('we have some numbers to compute', eqCheck);
+            existing = equalFunc(existing)
+        }
+    }
     existing === '0' ? existing = press : existing += press;
     screen.value = existing;
 }
@@ -91,12 +128,15 @@ equals.textContent = '=';
 equals.id = '=';
 buttons.appendChild(equals)
 equals.addEventListener('click', e => {
-    let value = screen.value.split(/\D/);
-    let op = screen.value.match(/\D/)[0];
-    let num1 = parseInt(value[0]);
-    let num2 = parseInt(value[1]);
-    console.log('value', value, 'op', op, 'num1', num1, 'num2', num2);
-    screen.value = operate(num1, op, num2);
+    // // let value = screen.value.split(/\D/);
+    // let value = screen.value.split(" ");
+    // // let op = screen.value.match(/\D/)[0];
+    // // let md = 
+    // let num1 = parseInt(value[0]);
+    // let num2 = parseInt(value[1]);
+    // console.log('value', value, 'op', op, 'num1', num1, 'num2', num2);
+    // screen.value = operate(num1, op, num2);
+    screen.value = equalFunc(screen.value)
 })
 
 //add clear button
