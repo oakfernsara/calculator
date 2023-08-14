@@ -16,12 +16,15 @@ function divide(num1, num2) {
 }
 
 function getNums(string) {
-    let nums = string.match(/\s*\d+\s*/g).map(num => parseInt(num.replace(' ', '')));
-    return nums
+    let nums = string.match(/\s*\d+\.*\d*\s*/g);
+    console.log('nums is', nums)
+    let final = nums.map(num => parseFloat(num.replace(' ', '')));
+    console.log('final is', final)
+    return final
 }
 
 function getOp(string) {
-    return string.match(/[^\d|\s]/)[0];
+    return string.match(/[+\-\*\/]/)[0];
 }
 
 function equalFunc(value) {
@@ -32,7 +35,7 @@ function equalFunc(value) {
     let num2 = getNums(value)[1];
     let op = getOp(value);
     console.log('value', value, 'op', op, 'num1', num1, 'num2', num2);
-    return operate(num1, op, num2);
+    return operate(num1, op, num2).toFixed(2);
 }
 
 // function separator(string) {
@@ -128,14 +131,6 @@ equals.textContent = '=';
 equals.id = '=';
 buttons.appendChild(equals)
 equals.addEventListener('click', e => {
-    // // let value = screen.value.split(/\D/);
-    // let value = screen.value.split(" ");
-    // // let op = screen.value.match(/\D/)[0];
-    // // let md = 
-    // let num1 = parseInt(value[0]);
-    // let num2 = parseInt(value[1]);
-    // console.log('value', value, 'op', op, 'num1', num1, 'num2', num2);
-    // screen.value = operate(num1, op, num2);
     screen.value = equalFunc(screen.value)
 })
 
