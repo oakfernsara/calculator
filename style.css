@@ -1,10 +1,19 @@
+body {
+    background-image: url('https://images.unsplash.com/photo-1521133573892-e44906baee46?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80');
+    background-size: cover;
+
+}
+
 button {
     height: 20%;
+    border-radius: 20px;
 }
 
 input {
     margin: 5%;
     min-height: 75px;
+    box-shadow: inset 0px 1px 4px 0px #cd5bcd;
+    background-color: #dde7eb;
 }
 .calc {
     display: flex;
@@ -14,6 +23,9 @@ input {
     padding: 10px;
     border: 1px solid;
     min-height: 350px;
+    border-radius: 20px;
+    box-shadow: 10px 9px 8px 0px #9f83a5;
+    background-color: #5b6c92;
 }
 
 .buttons {
@@ -30,7 +42,8 @@ input {
 }
 
 .numbers button {
-    flex-basis: 30%
+    flex-basis: 30%;
+    background-color: #d7c8d7;
 }
 
 .op-div {
@@ -44,9 +57,15 @@ input {
 
 .op-div button {
     height: 20.5%;
+    background-color: #bdc7de;
 }
 
 #equals {
     flex-basis: 95%;
     margin: 4%;
+    background-color: #aad4e4;
+}
+
+#clear {
+    background-color: #ff7abd;
 }

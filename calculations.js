@@ -144,8 +144,9 @@ equals.addEventListener('click', e => {
 
 //add clear button
 const clear = document.createElement('button');
-clear.textContent = 'clear';
+clear.textContent = 'C';
 numbers.appendChild(clear);
+clear.setAttribute('id', 'clear');
 clear.addEventListener('click', e => {
     screen.value = 0;
 })
