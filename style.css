@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
+
 body {
     background-image: url('https://images.unsplash.com/photo-1521133573892-e44906baee46?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80');
     background-size: cover;
-
+    font-family: 'Space Mono', monospace;
 }
 
 button {
@@ -14,6 +16,11 @@ input {
     min-height: 75px;
     box-shadow: inset 0px 1px 4px 0px #cd5bcd;
     background-color: #dde7eb;
+    text-align: right;
+    font-size: 2.5em;
+    padding: 0 10px;
+    color: #490649;
+    
 }
 .calc {
     display: flex;
