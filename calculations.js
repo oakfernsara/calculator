@@ -82,13 +82,17 @@ const numbers = document.createElement('div');
 const opDiv = document.createElement('div');
 
 document.body.appendChild(calculator);
-calculator.appendChild(screen);
+calculator.setAttribute('class', 'calc');
+calculator.appendChild(screen); 
 calculator.appendChild(buttons);
+buttons.setAttribute('class', 'buttons');
 buttons.appendChild(numbers);
+numbers.setAttribute('class', 'numbers')
 buttons.appendChild(opDiv);
+opDiv.setAttribute('class', 'op-div')
 
 //add numbers buttons
-for (let x = 1; x < 10; x++) {
+for (let x = 9; x >= 0; x--) {
     let button = document.createElement('button');
     let thisButton = numbers.appendChild(button);
     thisButton.textContent = x;
@@ -132,8 +136,8 @@ opArray.forEach(op => {
 //add equals button
 const equals = document.createElement('button');
 equals.textContent = '=';
-equals.id = '=';
-buttons.appendChild(equals)
+equals.id = 'equals';
+opDiv.appendChild(equals)
 equals.addEventListener('click', e => {
     screen.value = equalFunc(screen.value)
 })
@@ -141,7 +145,7 @@ equals.addEventListener('click', e => {
 //add clear button
 const clear = document.createElement('button');
 clear.textContent = 'clear';
-buttons.appendChild(clear);
+numbers.appendChild(clear);
 clear.addEventListener('click', e => {
     screen.value = 0;
 })
