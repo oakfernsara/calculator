@@ -33,7 +33,7 @@ function equalFunc(value) {
     let num2 = getNums(value)[1];
     let op = getOp(value);
     console.log('value', value, 'op', op, 'num1', num1, 'num2', num2);
-    return num1 && num2 && op ? operate(num1, op, num2).toFixed(2) : 'ERR';
+    return num1 && num2 && op ? parseFloat(operate(num1, op, num2).toFixed(2)) : 'ERR';
 }
 
 //Add variables for num1, num2, and operator
@@ -81,6 +81,22 @@ function inputUpdate(press) {
     screen.value = existing;
 }
 
+function keyPress(key) {
+    console.log('key is', key)
+    if (document.getElementById(key)) {
+        document.getElementById(key).click()
+    } else if (key === 'enter') {
+        equals.click();
+    } else if (key === 'escape') {
+        clear.click();
+    }
+    
+}
+
+document.addEventListener('keydown', e => {
+    keyPress(e.key.toLowerCase())
+})
+
 //create HTML calculator
 const calculator = document.createElement('div');
 const screen = document.createElement('input');
@@ -91,6 +107,7 @@ const opDiv = document.createElement('div');
 document.body.appendChild(calculator);
 calculator.setAttribute('class', 'calc');
 calculator.appendChild(screen); 
+screen.disabled = true;
 calculator.appendChild(buttons);
 buttons.setAttribute('class', 'buttons');
 buttons.appendChild(numbers);
