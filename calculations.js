@@ -69,6 +69,13 @@ function inputUpdate(press) {
             console.log('we have some numbers to compute', eqCheck);
             existing = equalFunc(existing)
         }
+    } else if (press === '\u2190') {
+        
+        let minusLength = existing.length-1;
+        let newString = existing.substr(0, minusLength);
+        console.log('newString is', newString, minusLength, existing.length)
+        existing = newString;
+        press = '';
     }
     existing === '0' ? existing = press : existing += press;
     screen.value = existing;
@@ -131,6 +138,15 @@ opArray.forEach(op => {
     thisButton.addEventListener('click', e=> {
         inputUpdate(e.target.textContent);
     })
+})
+
+//add backspace button
+let backspace = document.createElement('button');
+backspace.textContent = '\u2190'
+opDiv.appendChild(backspace)
+backspace.setAttribute('id', 'backspace')
+backspace.addEventListener('click', e => {
+    inputUpdate(e.target.textContent)
 })
 
 //add equals button

@@ -9,6 +9,8 @@ body {
 button {
     height: 20%;
     border-radius: 20px;
+    font-size: 1.2em;
+    font-family: 'Space Mono', monospace;
 }
 
 input {
@@ -68,11 +70,15 @@ input {
 }
 
 #equals {
-    flex-basis: 95%;
+    flex-basis: 72%;
     margin: 4%;
     background-color: #aad4e4;
 }
 
 #clear {
     background-color: #ff7abd;
+}
+
+#backspace {
+    margin: 4%;
 }
