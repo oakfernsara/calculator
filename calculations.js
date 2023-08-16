@@ -62,33 +62,58 @@ function operate(num1, op, num2) {
 //update input function
 function inputUpdate(press) {
     let existing = screen.value;
-    if (press.match(/[+\-\*\/]/)) {
+    console.log('press is', press, 'existing is', existing)
+    if (existing == '0' && press.match(/\d/)) {
+        console.log('starting at 0')
+        existing = press;
+    } else if (existing != '0' && press.match(/[+\-\*\/]/)) {
+        console.log('operator press')
         press = ` ${press} `
         let eqCheck = existing.match(/\d+\s[+\-\*\/]\s\d+/)
-        if (eqCheck) {
+        let endsWith = existing.match(/\d$/);
+        if (eqCheck && endsWith) {
+            console.log('passed eq check, calculating')
             console.log('we have some numbers to compute', eqCheck);
             existing = equalFunc(existing)
+            existing += press;
+        } else if (endsWith) {
+            console.log('failed eq check, adding press to existing')
+            existing += press;
         }
     } else if (press === '\u2190') {
-        
+        console.log('backspace pressed')
         let minusLength = existing.length-1;
         let newString = existing.substr(0, minusLength);
         console.log('newString is', newString, minusLength, existing.length)
         existing = newString;
         press = '';
+    } else {
+        console.log('just a regular old press')
+        existing += press;
     }
-    existing === '0' ? existing = press : existing += press;
+    // existing === '0' ? existing = press : existing += press;
     screen.value = existing;
+}
+
+function activeButton(key) {
+    let thisKey = document.getElementById(key);
+    if (thisKey) {
+        thisKey.classList.add('pressed')
+        thisKey.click()
+        setTimeout(() => thisKey.classList.remove('pressed'), 500)
+    }
+    
+    
 }
 
 function keyPress(key) {
     console.log('key is', key)
     if (document.getElementById(key)) {
-        document.getElementById(key).click()
-    } else if (key === 'enter') {
-        equals.click();
+        activeButton(key)
+    } else if (key === 'enter' || key === '=') {
+        activeButton('equals')
     } else if (key === 'escape') {
-        clear.click();
+        activeButton('clear')
     }
     
 }
@@ -108,6 +133,7 @@ document.body.appendChild(calculator);
 calculator.setAttribute('class', 'calc');
 calculator.appendChild(screen); 
 screen.disabled = true;
+screen.value = 0;
 calculator.appendChild(buttons);
 buttons.setAttribute('class', 'buttons');
 buttons.appendChild(numbers);

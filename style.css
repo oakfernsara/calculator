@@ -13,6 +13,11 @@ button {
     font-family: 'Space Mono', monospace;
 }
 
+.pressed {
+    color: #3c07c3;
+    font-size: 1.5em;
+}
+
 input {
     margin: 5%;
     min-height: 75px;
